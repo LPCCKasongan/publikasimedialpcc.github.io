@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Warta Jemaat — LP Churhc</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,600&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:         #f6f1e7;
+    --surface:    #ffffff;
+    --border:     #d9cdae;
+    --text:       #ffe8ac;
+    --text2:      #3d372f;
+    --muted:      #4f4a40;
+    --primary:    #1c2541;
+    --accent:     #7a3030;
+    --accent-soft:#e4cd8f;
+    --soft:       #f8fafc;
+    --ink: var(--text);
+    --gold:       #c9a24b;
+    --gold-soft:  #e4cd8f;
+    --maroon:     #7a3030;
+    --sage:       #4f7358;
+    --line:       #d9cdae;
+    --parchment:  #f6f1e7;
+    --parchment-2:#efe7d6;
+    --indigo:     #1c2541;
+    --indigo-2:   #262f52;
+    --bg-2:       #7285ca;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter', sans-serif;
+    font-weight:500;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{ font-family:'Inter', sans-serif; font-weight:700; letter-spacing:0; color:var(--primary); }
+  h4,h5,h6{ font-family:'Inter', sans-serif; font-weight:700; letter-spacing:0; color:var(--text); }
+  a{ color:inherit; }
+  img{ max-width:100%; display:block; }
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 24px; }
+  .eyebrow{
+    font-size:12px; letter-spacing:.16em; text-transform:uppercase;
+    font-weight:700; color:var(--accent);
+  }
+  section{ padding:64px 0; }
+  @media(max-width:900px){ .wrap{ padding:0 18px; } }
+  @media(max-width:720px){ .wrap{ padding:0 16px; } }
+  @media(max-width:640px){ section{ padding:42px 0; } .hero{ padding:56px 0 0; } .hero-inner{ padding:0 14px; } .hero p.lead{ font-size:15px; max-width:100%; } .hero-cta{ flex-direction:column; gap:12px; } .btn{ width:100%; justify-content:center; } .brand-name{ font-size:16px; } }
+
+  /* ===== NAV ===== */
+  .nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(28,37,65,.94); backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(201,162,75,.25);
+  }
+  .nav .wrap{ display:flex; align-items:center; justify-content:space-between; padding:14px 24px; position:relative; }
+  .brand{ display:flex; align-items:center; gap:10px; color:var(--text); }
+  .brand-mark{ width:30px; height:34px; flex:none; }
+  .brand-name{ font-family:'Fraunces', serif; font-weight:700; font-size:17px; letter-spacing:0; }
+  .nav-toggle{
+    display:none;
+    width:42px; height:42px; border:none; background:none; color:var(--parchment);
+    cursor:pointer; align-items:center; justify-content:center;
+  }
+  .nav-toggle span,
+  .nav-toggle span::before,
+  .nav-toggle span::after{
+    content:''; display:block; width:22px; height:2px; background:currentColor; border-radius:999px;
+  }
+  .nav-toggle span::before,
+  .nav-toggle span::after{
+    position:relative;
+    transition:transform .2s ease;
+  }
+  .nav-toggle span::before{ top:-6px; }
+  .nav-toggle span::after{ top:4px; }
+  .navlinks{ display:flex; gap:28px; list-style:none; }
+  .navlinks a{
+    color:var(--text2); text-decoration:none; font-size:14px; font-weight:700;
+    letter-spacing:.02em; transition:color .2s;
+  }
+  .navlinks a:hover, .navlinks a:focus-visible{ color:#fff; }
+  .navlinks{ font-family:'Inter',sans-serif; }
+  @media(max-width:720px){
+    .nav-toggle{ display:flex; }
+    .navlinks{ display:none; position:absolute; top:100%; right:16px; left:16px; flex-direction:column; gap:0; background:rgba(28,37,65,.98); border-radius:12px; padding:14px 16px; box-shadow:0 18px 40px rgba(0,0,0,.25); }
+    .navlinks.show{ display:flex; }
+    .navlinks li{ width:100%; }
+    .navlinks a{ display:block; width:100%; padding:10px 0; border-bottom:1px solid rgba(255,255,255,.08); }
+    .navlinks a:last-child{ border-bottom:none; }
+  }
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative; overflow:hidden;
+    background:radial-gradient(120% 140% at 50% -10%, #33406b 0%, var(--indigo) 55%, #141a30 100%);
+    color:var(--parchment); padding:96px 0 0;
+  }
+  .hero-inner{ text-align:center; max-width:720px; margin:0 auto; padding:0 24px; }
+  .hero .eyebrow{ color:var(--gold-soft); }
+  .hero h1{
+    font-size:clamp(34px, 5.4vw, 56px); margin:18px 0 16px; color:#fff;
+    font-weight:900; letter-spacing:-0.025em;
+  }
+  .hero p.lead{ color:rgba(255,255,255,.92); font-size:17px; font-weight:500; max-width:520px; margin:0 auto; }
+  .hero-cta{ display:flex; gap:14px; justify-content:center; margin-top:32px; flex-wrap:wrap; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:12px 20px; border-radius:999px; font-weight:700; font-size:14.5px;
+    text-decoration:none; border:1px solid transparent; cursor:pointer;
+    transition:transform .15s ease, background .2s, border-color .2s;
+  }
+  .btn:hover{ transform:translateY(-1px); }
+  .btn-gold{ background:var(--accent); color:#fff; }
+  .btn-gold:hover{ background:#8b3a3a; }
+  .btn-outline{ border-color:var(--border); color:var(--text); background:transparent; }
+  .btn-outline:hover{ background:var(--soft); }
+
+  /* verse ribbon */
+  .verse{
+    margin-top:56px; padding:22px 24px 26px;
+    background:linear-gradient(180deg, rgba(201,162,75,.14), rgba(201,162,75,.05));
+    border-top:1px solid rgba(201,162,75,.3);
+  }
+  .verse blockquote{
+    max-width:680px; margin:0 auto; text-align:center;
+    font-family:'Fraunces', serif; font-style:italic; font-weight:500;
+    font-size:18px; color:var(--text); line-height:1.6;
+  }
+  .verse cite{ display:block; margin-top:10px; font-style:normal; font-size:13px; color:var(--muted); letter-spacing:.03em; }
+
+  /* arch skyline divider */
+  .arches{ display:none; }
+
+  /* ===== SECTION HEADS ===== */
+  .sec-head{ text-align:center; max-width:560px; margin:0 auto 44px; }
+  .sec-head h2{ font-size:clamp(26px,3.4vw,34px); margin-top:10px; }
+  .sec-head p{ color:var(--text2); margin-top:10px; font-size:15px; }
+
+  /* ===== JADWAL IBADAH (arch windows) ===== */
+  .services{ background:var(--parchment); position:relative; }
+  .service-grid{ display:grid; grid-template-columns:1fr 1fr; gap:28px; }
+  @media(max-width:760px){ .service-grid{ grid-template-columns:1fr; } }
+
+  .window{
+    position:relative; background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:30px 24px 24px;
+    overflow:hidden;
+  }
+  .window::before{ display:none; }
+  .window.offline::before,
+  .window.online::before{ display:none; }
+  .window-tag{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:12px; font-weight:700; text-transform:uppercase;
+    padding:6px 12px; border-radius:999px; margin-bottom:16px;
+    background:var(--soft); color:var(--text);
+  }
+  .window.offline .window-tag{ color:var(--accent); }
+  .window.online .window-tag{ color:var(--primary); }
+  .dot{ display:none; }
+
+  .window h3{ position:relative; font-size:23px; margin-bottom:6px; }
+  .window .desc{ color:#2d2a24; font-size:14px; margin-bottom:22px; }
+
+  .svc-row{
+    display:flex; justify-content:space-between; align-items:flex-start; gap:12px;
+    padding:13px 0; border-top:1px solid #efe7d6;
+    font-size:14.5px;
+  }
+  .svc-row .label{ color:#4f4a40; }
+  .svc-row .val{ font-weight:600; text-align:right; }
+  .svc-row .val .date-badge{
+    display:block; font-size:11.5px; font-weight:700; color:var(--text2);
+    text-transform:uppercase; letter-spacing:.03em; margin-bottom:2px;
+  }
+  .svc-empty{ padding:18px 0; color:var(--muted); font-size:13.5px; font-style:italic; }
+
+  .window .join{
+    margin-top:22px; display:inline-flex; align-items:center; gap:6px;
+    font-size:13.5px; font-weight:700; text-decoration:none;
+    border-bottom:1.5px solid currentColor; padding-bottom:2px;
+  }
+  .window.offline .join{ color:var(--maroon); }
+  .window.online .join{ color:var(--sage); }
+
+  /* ===== JADWAL MINGGUAN ===== */
+  .weekly{ background:var(--indigo); color:var(--parchment); }
+  .weekly .sec-head p{ color:#b9c0d8; }
+  .weekly .eyebrow{ color:var(--gold-soft); }
+  .weekly .day-name{ color:var(--text2); }
+
+  .week-grid{
+    display:grid; grid-template-columns:repeat(7,1fr); gap:14px;
+  }
+  @media(max-width:900px){ .week-grid{ grid-template-columns:repeat(1,1fr); } }
+
+  .day-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:14px; padding:18px 16px; min-height:180px;
+    display:flex; flex-direction:column;
+  }
+  .day-card.today{
+    border-color:var(--accent);
+    box-shadow:0 4px 16px rgba(0,0,0,.06);
+  }
+  .day-name{
+    font-family:'Fraunces',serif; font-weight:700; font-size:15px;
+    color:var(--text); padding-bottom:10px; margin-bottom:12px;
+    border-bottom:1px solid var(--border);
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .today-pill{
+    font-size:9.5px; letter-spacing:.08em; text-transform:uppercase; font-weight:700;
+    background:var(--accent); color:#fff; padding:2px 7px; border-radius:20px;
+  }
+  .day-events{ display:flex; flex-direction:column; gap:10px; flex:1; }
+  .event{ font-size:12.8px; }
+  .event .t{ color:#7a3030; font-weight:700; font-size:11.5px; letter-spacing:.02em; }
+  .event .n{ color:#3d372f; margin-top:2px; }
+  .day-empty{ font-size:12.5px; color:#5f5a53; font-style:italic; margin-top:auto; padding-top:8px; }
+
+  /* ===== WARTA / PENGUMUMAN ===== */
+  .warta{ background:var(--bg); }
+  .warta-list{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  @media(max-width:900px){ .warta-list{ grid-template-columns:1fr; } }
+  .warta-item{
+    background:var(--surface); border:1px solid var(--border); border-radius:16px;
+    padding:20px; display:flex; gap:16px;
+  }
+  @media(max-width:680px){ .warta-item{ flex-direction:column; padding:18px 16px; } .warta-icon{ width:44px; height:44px; } .warta-item h4{ font-size:16px; } .warta-item p{ font-size:14px; } }
+  .warta-icon{
+    flex:none; width:40px; height:40px; border-radius:12px;
+    background:var(--soft); display:flex; align-items:center; justify-content:center;
+    color:var(--accent); font-family:'Fraunces',serif; font-weight:700;
+  }
+  .warta-item h4{ font-family:'Fraunces',serif; font-size:16px; font-weight:700; margin-bottom:6px; color:var(--primary); }
+  .warta-item p{ font-size:14px; color:#3d372f; margin-bottom:10px; }
+  .warta-item .date{ display:block; font-size:12px; color:var(--accent); font-weight:700; letter-spacing:.03em; text-transform:uppercase; }
+
+  /* ===== FOOTER ===== */
+  footer{ background:var(--surface); color:var(--text); padding:40px 0 24px; border-top:1px solid var(--border); }
+  .foot-grid{ display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:40px; margin-bottom:32px; }
+  @media(max-width:900px){ .foot-grid{ grid-template-columns:1fr; gap:32px; } }
+  footer h5{
+    font-family:'Fraunces',serif; font-weight:700; color:var(--primary); font-size:15px; margin-bottom:14px;
+  }
+  footer .brand-name{ color:var(--text); }
+  footer p{ font-size:14px; line-height:1.8; }
+  footer ul{ list-style:none; font-size:14px; display:flex; flex-direction:column; gap:9px; }
+  footer a{ text-decoration:none; color:var(--text); transition:color .2s; }
+  footer a:hover{ color:var(--accent); }
+  .foot-bottom{
+    border-top:1px solid rgba(255,255,255,.08); padding-top:22px;
+    font-size:12.5px; color:#7d84a0; text-align:center;
+  }
+
+  ::selection{ background:var(--gold-soft); color:#241f18; }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
+
+  /* ===== ADMIN ===== */
+  .admin-fab{
+    position:fixed; right:20px; bottom:20px; z-index:200;
+    display:flex; align-items:center; gap:8px;
+    background:var(--indigo); color:var(--gold-soft);
+    border:1px solid rgba(201,162,75,.4); border-radius:30px;
+    padding:12px 18px; font-size:13.5px; font-weight:700;
+    cursor:pointer; box-shadow:0 8px 24px rgba(20,26,48,.35);
+    font-family:'Inter',sans-serif;
+  }
+  .admin-fab:hover{ background:#262f52; }
+
+  .modal-overlay{
+    position:fixed; inset:0; background:rgba(20,20,16,.55);
+    display:none; align-items:center; justify-content:center;
+    z-index:300; padding:20px;
+  }
+  .modal-overlay.open{ display:flex; }
+  .modal-box{
+    background:#fffefb; border-radius:8px; width:100%; max-width:640px;
+    max-height:88vh; overflow-y:auto; box-shadow:0 20px 60px rgba(0,0,0,.3);
+  }
+  .modal-head{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 24px; border-bottom:1px solid var(--line);
+    position:sticky; top:0; background:#fffefb;
+  }
+  .modal-head h3{ font-size:19px; }
+  .modal-close{
+    background:none; border:none; font-size:22px; cursor:pointer; color:var(--muted);
+    line-height:1; padding:4px;
+  }
+  .modal-body{ padding:24px; }
+
+  .field{ margin-bottom:16px; }
+  .field label{ display:block; font-size:12.5px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; margin-bottom:6px; }
+  .field input, .field select{
+    width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:4px;
+    font-family:'Inter',sans-serif; font-size:14px; background:#fff; color:var(--ink);
+  }
+  .field input:focus, .field select:focus{ outline:2px solid var(--gold); outline-offset:0; border-color:var(--gold); }
+  .field-row{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  @media(max-width:520px){ .field-row{ grid-template-columns:1fr; } }
+
+  .admin-note{
+    background:rgba(201,162,75,.12); border:1px solid rgba(201,162,75,.35);
+    border-radius:5px; padding:12px 14px; font-size:12.8px; color:#6b5720;
+    margin-bottom:20px; line-height:1.55;
+  }
+  .admin-error{ background:rgba(122,48,48,.1); border:1px solid rgba(122,48,48,.3); color:var(--maroon); padding:10px 13px; border-radius:5px; font-size:13px; margin-bottom:14px; display:none; }
+
+  .admin-table{ width:100%; border-collapse:collapse; margin-bottom:22px; font-size:13.2px; border:1px solid var(--border); border-radius:12px; overflow:hidden; background:var(--surface); }
+  .admin-table th{ text-align:left; font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:#2d2a24; padding:12px 10px; border-bottom:1px solid var(--border); background:var(--soft); }
+  .admin-table td{ padding:12px 10px; border-bottom:1px solid #e7e1d7; vertical-align:top; color:var(--text); }
+  .admin-table tr:nth-child(even){ background:#f7f3ec; }
+  .admin-table tr:hover{ background:#f0e9de; }
+  .admin-table .tag{ font-size:10.5px; font-weight:700; padding:2px 8px; border-radius:12px; text-transform:uppercase; }
+  .admin-table .tag.offline{ background:rgba(122,48,48,.1); color:var(--maroon); }
+  .admin-table .tag.online{ background:rgba(79,115,88,.12); color:var(--sage); }
+  .row-actions{ display:flex; gap:8px; }
+  .icon-btn{
+    background:none; border:1px solid var(--line); border-radius:4px; cursor:pointer;
+    padding:4px 8px; font-size:12px; color:var(--muted);
+  }
+  .icon-btn:hover{ border-color:var(--gold); color:var(--ink); }
+  .icon-btn.danger:hover{ border-color:var(--maroon); color:var(--maroon); }
+
+  .section-title-sm{ font-family:'Fraunces',serif; font-size:15.5px; margin-bottom:12px; }
+  .btn-full{ width:100%; justify-content:center; margin-top:6px; }
+  .form-actions{ display:flex; gap:10px; margin-top:18px; }
+  .btn-secondary{ background:var(--parchment-2); color:var(--ink); }
+  .btn-secondary:hover{ background:var(--line); }\
+  .logout-link{ font-size:12.5px; color:var(--muted); text-decoration:underline; cursor:pointer; background:none; border:none; padding:0; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 30 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15 0C15 0 21 6 21 12V16H24V34H6V16H9V12C9 6 15 0 15 0Z" fill="#c9a24b"/>
+        <rect x="13.2" y="8" width="3.6" height="12" fill="#1c2541"/>
+        <rect x="9" y="12.2" width="12" height="3.6" fill="#1c2541"/>
+      </svg>
+      <span class="brand-name">LP Church</span>
+    </div>
+    <button class="nav-toggle" onclick="toggleNav()" aria-label="Buka menu navigasi"><span></span></button>
+    <ul class="navlinks">
+      <li><a href="#ibadah">Jadwal Ibadah</a></li>
+      <li><a href="#mingguan">Kegiatan Mingguan</a></li>
+      <li><a href="#warta">Warta</a></li>
+      <li><a href="#kontak">Kontak</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Warta Jemaat</div>
+    <h1 id="heroDate">Minggu, 26 Juli 2026</h1>
+    <p class="lead">Selamat datang, jemaat yang dikasihi Tuhan. Berikut jadwal ibadah dan kegiatan pelayanan minggu ini.</p>
+    <div class="hero-cta">
+      <a href="#ibadah" class="btn btn-gold">Lihat Jadwal Ibadah</a>
+      <a href="#mingguan" class="btn btn-outline">Kegiatan Minggu Ini</a>
+      <a href="https://www.youtube.com/@lpcckasongan" target="_blank" rel="noopener noreferrer" class="btn btn-outline">▶ Tonton di YouTube</a>
+    </div>
+  </div>
+
+  <div class="verse">
+    <blockquote>
+      "Sebab itu janganlah kamu kuatir akan hari besok, karena hari besok mempunyai kesusahannya sendiri. Kesusahan sehari cukuplah untuk sehari."
+      <cite>— Matius 6:34</cite>
+    </blockquote>
+  </div>
+
+  <div class="arches">
+    <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+      <rect x="0" y="30" width="1200" height="30" fill="#f6f1e7"/>
+      <path d="M0,30 Q30,0 60,30 Q90,0 120,30 Q150,0 180,30 Q210,0 240,30 Q270,0 300,30 Q330,0 360,30 Q390,0 420,30 Q450,0 480,30 Q510,0 540,30 Q570,0 600,30 Q630,0 660,30 Q690,0 720,30 Q750,0 780,30 Q810,0 840,30 Q870,0 900,30 Q930,0 960,30 Q990,0 1020,30 Q1050,0 1080,30 Q1110,0 1140,30 Q1170,0 1200,30 L1200,60 L0,60 Z" fill="#f6f1e7"/>
+    </svg>
+  </div>
+</header>
+
+<section class="services" id="ibadah">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" style="color:var(--maroon)">Jadwal Ibadah</div>
+      <h2>Bergabunglah dalam Ibadah</h2>
+      <p>Tersedia secara langsung di gedung gereja maupun disiarkan daring bagi jemaat yang berhalangan hadir.</p>
+    </div>
+
+    <div class="service-grid" id="ibadahGrid">
+      <!-- dirender otomatis oleh JavaScript dari data jadwal -->
+    </div>
+  </div>
+</section>
+
+<section class="weekly" id="mingguan">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Kegiatan Mingguan</div>
+      <h4>Jadwal Pelayanan Sepekan</h4>
+      <p>Rangkaian persekutuan, pemuridan, dan pelayanan sepanjang minggu ini.</p>
+    </div>
+
+    <div class="week-grid" id="weekGrid">
+      <div class="day-card" data-day="1">
+        <div class="day-name">Senin<span class="today-pill" style="display:none;">Hari Ini</span></div>
+        <div class="day-events">
+          <div class="event"><div class="t">05:00</div><div class="n">Doa Pagi Online</div></div>
+        </div>
+      </div>
+      <div class="day-card" data-day="2">
+        <div class="day-name">Selasa<span class="today-pill" style="display:none;">Hari Ini</span></div>
+        <div class="day-events">
+          <div class="event"><div class="t">19:00</div><div class="n">Persekutuan Wanita</div></div>
+        </div>
+      </div>
+      <div class="day-card" data-day="3">
+        <div class="day-name">Rabu<span class="today-pill" style="display:none;">Hari Ini</span></div>
+        <div class="day-events">
+          <div class="event"><div class="t">19:00</div><div class="n">Pemahaman Alkitab</div></div>
+          <div class="event"><div class="t">19:00</div><div class="n">Latihan Musik Pujian</div></div>
+        </div>
+      </div>
+      <div class="day-card" data-day="4">
+        <div class="day-name">Kamis<span class="today-pill" style="display:none;">Hari Ini</span></div>
+        <div class="day-events">
+          <div class="event"><div class="t">16:00</div><div class="n">Sekolah Minggu — Persiapan Guru</div></div>
+        </div>
+      </div>
+      <div class="day-card" data-day="5">
+        <div class="day-name">Jumat<span class="today-pill" style="display:none;">Hari Ini</span></div>
+        <div class="day-events">
+          <div class="event"><div class="t">19:00</div><div class="n">Persekutuan Pemuda</div></div>
+        </div>
+      </div>
+      <div class="day-card" data-day="6">
+        <div class="day-name">Sabtu<span class="today-pill" style="display:none;">Hari Ini</span></div>
+        <div class="day-events">
+          <div class="event"><div class="t">16:00</div><div class="n">Latihan Paduan Suara</div></div>
+        </div>
+      </div>
+      <div class="day-card" data-day="0">
+        <div class="day-name">Minggu<span class="today-pill" style="display:none;">Hari Ini</span></div>
+        <div class="day-events">
+          <div class="event" style="color:var(--text2); "><div class="t">06:30</div><div class="n">Ibadah I</div></div>
+          <div class="event" style="color:var(--text2); "><div class="t">09:00</div><div class="n">Ibadah II + Daring</div></div>
+          <div class="event" style="color:var(--text2); "><div class="t">17:00</div><div class="n">Ibadah Remaja</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="warta" id="warta">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" style="color:var(--maroon)">Warta Jemaat</div>
+      <h2>Pengumuman &amp; Informasi</h2>
+    </div>
+
+    <div class="warta-list">
+      <div class="warta-item">
+        <div class="warta-icon">1</div>
+        <div>
+          <h4>Persembahan Bulan Misi</h4>
+          <p>Persembahan khusus bulan ini akan disalurkan untuk mendukung pelayanan misi ke daerah pelayanan baru.</p>
+          <span class="date">Sepanjang Juli 2026</span>
+        </div>
+      </div>
+      <div class="warta-item">
+        <div class="warta-icon">2</div>
+        <div>
+          <h4>Pendaftaran Katekisasi</h4>
+          <p>Bagi jemaat yang ingin mengikuti kelas katekisasi, pendaftaran dibuka di kantor gereja setiap hari kerja.</p>
+          <span class="date">Ditutup 10 Agustus 2026</span>
+        </div>
+      </div>
+      <div class="warta-item">
+        <div class="warta-icon">3</div>
+        <div>
+          <h4>Retreat Keluarga</h4>
+          <p>Acara retreat keluarga jemaat akan diadakan di Wisma Kasih, dengan tema "Rumah yang Berakar pada Kristus".</p>
+          <span class="date">15–17 Agustus 2026</span>
+        </div>
+      </div>
+      <div class="warta-item">
+        <div class="warta-icon">4</div>
+        <div>
+          <h4>Doa Syafaat</h4>
+          <p>Mari mendoakan jemaat yang sedang sakit dan dalam pemulihan. Daftar nama tersedia di meja penerima tamu.</p>
+          <span class="date">Diperbarui setiap Minggu</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="kontak">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <span class="brand-name" style="font-size:18px; color:var(--text2)">LP Church</span>
+        <p style="margin-top:14px; color:var(--text2); ">JL. Tjilik Riwut Km2.5, Kecamatan Katingan Hilir, Kabupaten Katingan, Kalimantan Tengah</p>
+      </div>
+      <div>
+        <h5>Kontak</h5>
+        <ul>
+          <li style="color:var(--text2); ">Telepon: (0812) 3456-7890</li>
+          <li style="color:var(--text2); ">Email: sekretariat@lpchurch.org</li>
+          <li style="color:var(--text2); ">Instagram: @lpchurch</li>
+        </ul>
+      </div>
+      <div>
+        <h5>Tautan Cepat</h5>
+        <ul>
+          <li style="color:var(--text2); "><a href="#ibadah">Jadwal Ibadah</a></li>
+          <li style="color:var(--text2); "><a href="#mingguan">Kegiatan Mingguan</a></li>
+          <li style="color:var(--text2); "><a href="#warta">Warta Jemaat</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">© 2026 LP Church. Dibuat untuk pelayanan jemaat.</div>
+  </div>
+</footer>
+
+<!-- ===== ADMIN: tombol mengambang ===== -->
+<button class="admin-fab" id="adminFab" onclick="openAdmin()">⚙ Admin</button>
+
+<!-- ===== ADMIN: modal login ===== -->
+<div class="modal-overlay" id="loginOverlay">
+  <div class="modal-box" style="max-width:380px;">
+    <div class="modal-head">
+      <h3>Masuk sebagai Admin</h3>
+      <button class="modal-close" onclick="closeLogin()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="admin-error" id="loginError">Kode admin salah. Coba lagi.</div>
+      <div class="field">
+        <label for="loginPass">Kode Admin</label>
+        <input type="password" id="loginPass" placeholder="Masukkan kode admin" autocomplete="off">
+      </div>
+      <button class="btn btn-gold btn-full" onclick="tryLogin()">Masuk</button>
+      <p style="font-size:12px; color:var(--muted); margin-top:14px; text-align:center;">Kode demo: <strong>gereja2026</strong> — ganti di kode sumber sebelum situs diterbitkan.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ADMIN: panel kelola jadwal ===== -->
+<div class="modal-overlay" id="adminOverlay">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3>Kelola Jadwal Ibadah</h3>
+      <button class="modal-close" onclick="closeAdmin()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="admin-note">
+        Perubahan di sini langsung tampil di halaman utama. <strong>Catatan:</strong> karena situs ini belum tersambung ke database, perubahan hanya tersimpan selama sesi/tab browser ini berjalan — akan kembali ke jadwal semula jika halaman dimuat ulang. Untuk penyimpanan permanen (tersimpan setelah reload, dan sama untuk semua pengunjung), situs perlu backend/database — beri tahu saya jika ingin fitur itu ditambahkan.
+      </div>
+
+      <div class="field">
+        <label for="heroDateInput">Judul Tanggal Minggu Ini (tampil di bagian atas situs)</label>
+        <input type="text" id="heroDateInput" placeholder="Minggu, 26 Juli 2026" oninput="updateHeroDate()" style="color:var(--text2);">
+      </div>
+
+      <h4 class="section-title-sm">Daftar Jadwal Ibadah</h4>
+      <table class="admin-table">
+        <thead>
+          <tr><th>Tipe</th><th>Nama</th><th>Tanggal</th><th>Jam</th><th></th></tr>
+        </thead>
+        <tbody id="adminTableBody"></tbody>
+      </table>
+
+      <h4 class="section-title-sm" id="formTitle">Tambah Jadwal Baru</h4>
+      <input type="hidden" id="editId" value="">
+      <div class="field">
+        <label for="fTipe">Tipe Ibadah</label>
+        <select id="fTipe">
+          <option value="offline">Tatap Muka (Offline)</option>
+          <option value="online">Daring (Online)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="fNama">Nama Ibadah</label>
+        <input type="text" id="fNama" placeholder="Contoh: Ibadah I, Ibadah Natal, dsb.">
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="fTanggal">Tanggal</label>
+          <input type="date" id="fTanggal">
+        </div>
+        <div class="field">
+          <label for="fJamMulai">Jam Mulai</label>
+          <input type="time" id="fJamMulai">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="fJamSelesai">Jam Selesai (opsional)</label>
+          <input type="time" id="fJamSelesai">
+        </div>
+        <div class="field">
+          <label for="fTempat">Lokasi / Platform</label>
+          <input type="text" id="fTempat" placeholder="Gedung Gereja / YouTube / Zoom">
+        </div>
+      </div>
+      <div class="field">
+        <label for="fLink">Tautan (khusus Online, opsional)</label>
+        <input type="text" id="fLink" placeholder="https://youtube.com/...">
+      </div>
+
+      <div class="form-actions">
+        <button class="btn btn-gold" onclick="saveEntry()" id="saveBtn">Simpan Jadwal</button>
+        <button class="btn btn-secondary" onclick="resetForm()">Batal</button>
+      </div>
+
+      <div style="margin-top:24px; text-align:right;">
+        <button class="logout-link" onclick="logoutAdmin()">Keluar dari mode admin</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* ============ KONEKSI KE BACKEND (API) ============ */
+  const API_BASE = '/api';
+  let ibadahData = [];      // diisi dari server lewat GET /api/ibadah
+  let adminCode = null;     // kode admin yang berhasil login, dipakai di header request
+
+  const hariNama = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+  const bulanNama = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+
+  function formatTanggalPendek(iso){
+    if(!iso) return '';
+    const d = new Date(iso + 'T00:00:00');
+    return hariNama[d.getDay()] + ', ' + d.getDate() + ' ' + bulanNama[d.getMonth()] + ' ' + d.getFullYear();
+  }
+
+  async function apiFetch(url, options = {}){
+    const headers = Object.assign({ 'Content-Type': 'application/json' }, options.headers || {});
+    if(adminCode) headers['x-admin-code'] = adminCode;
+    const res = await fetch(API_BASE + url, Object.assign({}, options, { headers }));
+    if(!res.ok){
+      let msg = 'Terjadi kesalahan pada server.';
+      try{ const data = await res.json(); if(data.error) msg = data.error; }catch(e){}
+      throw new Error(msg);
+    }
+    if(res.status === 204) return null;
+    return res.json();
+  }
+
+  /* ============ RENDER JADWAL IBADAH DI HALAMAN UTAMA ============ */
+  function renderIbadah(){
+    const grid = document.getElementById('ibadahGrid');
+    const offline = ibadahData.filter(x => x.tipe === 'offline').sort((a,b)=> (a.tanggal+a.jamMulai).localeCompare(b.tanggal+b.jamMulai));
+    const online  = ibadahData.filter(x => x.tipe === 'online').sort((a,b)=> (a.tanggal+a.jamMulai).localeCompare(b.tanggal+b.jamMulai));
+
+    function rows(list){
+      if(list.length === 0) return '<div class="svc-empty">Belum ada jadwal ditambahkan.</div>';
+      return list.map(x => `
+        <div class="svc-row">
+          <span class="label">${x.nama}</span>
+          <span class="val">
+            <span class="date-badge">${formatTanggalPendek(x.tanggal)}</span>
+            <span style="color:var(--text2);">${x.jamMulai}${x.jamSelesai ? ' – ' + x.jamSelesai : ''} WIB</span>
+          </span>
+        </div>`).join('');
+    }
+
+    grid.innerHTML = `
+      <div class="window offline">
+        <span class="window-tag"><span class="dot"></span> Tatap Muka</span>
+        <h3>Ibadah Minggu — Luring</h3>
+        <p class="desc">Dilaksanakan di Gedung Gereja Utama.</p>
+        ${rows(offline)}
+        <a class="join" href="#kontak">Lihat peta lokasi →</a>
+      </div>
+      <div class="window online">
+        <span class="window-tag"><span class="dot"></span> Siaran Langsung</span>
+        <h3>Ibadah Minggu — Daring</h3>
+        <p class="desc">Disiarkan langsung melalui YouTube &amp;.</p>
+        ${rows(online)}
+        <a class="join" href="${online[0] && online[0].link ? online[0].link : 'https://www.youtube.com/@lpcckasongan'}" target="_blank" rel="noopener">Tonton di YouTube →</a>
+      </div>`;
+  }
+
+  /* ============ RENDER TABEL ADMIN ============ */
+  function renderAdminTable(){
+    const body = document.getElementById('adminTableBody');
+    if(ibadahData.length === 0){
+      body.innerHTML = '<tr><td colspan="5" style="color:var(--muted); font-style:italic;">Belum ada data.</td></tr>';
+      return;
+    }
+    body.innerHTML = ibadahData
+      .slice()
+      .sort((a,b)=> (a.tanggal+a.jamMulai).localeCompare(b.tanggal+b.jamMulai))
+      .map(x => `
+      <tr>
+        <td style="color:var(--text2); "><span class="tag ${x.tipe}">${x.tipe === 'offline' ? 'Offline' : 'Online'}</span></td>
+        <td style="color:var(--text2); ">${x.nama}</td>
+        <td style="color:var(--text2); ">${formatTanggalPendek(x.tanggal)}</td>
+        <td style="color:var(--text2); ">${x.jamMulai}${x.jamSelesai ? '–' + x.jamSelesai : ''}</td>
+        <td>
+          <div class="row-actions">
+            <button class="icon-btn" onclick="editEntry(${x.id})">Ubah</button>
+            <button class="icon-btn danger" onclick="deleteEntry(${x.id})">Hapus</button>
+          </div>
+        </td>
+      </tr>`).join('');
+  }
+
+  /* ============ MUAT DATA DARI SERVER ============ */
+  async function loadIbadah(){
+    try{
+      ibadahData = await apiFetch('/ibadah');
+      renderIbadah();
+      if(isAdmin) renderAdminTable();
+    }catch(err){
+      console.error(err);
+      document.getElementById('ibadahGrid').innerHTML =
+        '<p style="color:var(--muted); grid-column:1/-1;">Tidak dapat memuat jadwal dari server. Pastikan backend berjalan.</p>';
+    }
+  }
+
+  async function loadSettings(){
+    try{
+      const settings = await apiFetch('/settings');
+      if(settings.heroDate){
+        document.getElementById('heroDate').textContent = settings.heroDate;
+      }
+    }catch(err){
+      console.error(err);
+    }
+  }
+
+  /* ============ CRUD (lewat API) ============ */
+  async function saveEntry(){
+    const id = document.getElementById('editId').value;
+    const entry = {
+      tipe: document.getElementById('fTipe').value,
+      nama: document.getElementById('fNama').value.trim(),
+      tanggal: document.getElementById('fTanggal').value,
+      jamMulai: document.getElementById('fJamMulai').value,
+      jamSelesai: document.getElementById('fJamSelesai').value,
+      tempat: document.getElementById('fTempat').value.trim(),
+      link: document.getElementById('fLink').value.trim()
+    };
+
+    if(!entry.nama || !entry.tanggal || !entry.jamMulai){
+      alert('Mohon isi minimal Nama Ibadah, Tanggal, dan Jam Mulai.');
+      return;
+    }
+
+    try{
+      if(id){
+        await apiFetch('/ibadah/' + id, { method:'PUT', body: JSON.stringify(entry) });
+      } else {
+        await apiFetch('/ibadah', { method:'POST', body: JSON.stringify(entry) });
+      }
+      await loadIbadah();
+      resetForm();
+    }catch(err){
+      alert('Gagal menyimpan jadwal: ' + err.message);
+    }
+  }
+
+  function editEntry(id){
+    const x = ibadahData.find(x => x.id === id);
+    if(!x) return;
+    document.getElementById('editId').value = x.id;
+    document.getElementById('fTipe').value = x.tipe;
+    document.getElementById('fNama').value = x.nama;
+    document.getElementById('fTanggal').value = x.tanggal;
+    document.getElementById('fJamMulai').value = x.jamMulai;
+    document.getElementById('fJamSelesai').value = x.jamSelesai;
+    document.getElementById('fTempat').value = x.tempat;
+    document.getElementById('fLink').value = x.link;
+    document.getElementById('formTitle').textContent = 'Ubah Jadwal';
+    document.getElementById('saveBtn').textContent = 'Simpan Perubahan';
+    document.getElementById('fNama').scrollIntoView({behavior:'smooth', block:'center'});
+  }
+
+  async function deleteEntry(id){
+    if(!confirm('Hapus jadwal ini?')) return;
+    try{
+      await apiFetch('/ibadah/' + id, { method:'DELETE' });
+      await loadIbadah();
+    }catch(err){
+      alert('Gagal menghapus jadwal: ' + err.message);
+    }
+  }
+
+  function resetForm(){
+    document.getElementById('editId').value = '';
+    document.getElementById('fTipe').value = 'offline';
+    document.getElementById('fNama').value = '';
+    document.getElementById('fTanggal').value = '';
+    document.getElementById('fJamMulai').value = '';
+    document.getElementById('fJamSelesai').value = '';
+    document.getElementById('fTempat').value = '';
+    document.getElementById('fLink').value = '';
+    document.getElementById('formTitle').textContent = 'Tambah Jadwal Baru';
+    document.getElementById('saveBtn').textContent = 'Simpan Jadwal';
+  }
+
+  async function updateHeroDate(){
+    const v = document.getElementById('heroDateInput').value.trim();
+    if(!v) return;
+    document.getElementById('heroDate').textContent = v;
+    try{
+      await apiFetch('/settings', { method:'PUT', body: JSON.stringify({ heroDate: v }) });
+    }catch(err){
+      console.error('Gagal menyimpan tanggal ke server:', err.message);
+    }
+  }
+
+  /* ============ LOGIN / MODAL ============ */
+  let isAdmin = false;
+
+  function openAdmin(){
+    if(isAdmin){
+      document.getElementById('adminOverlay').classList.add('open');
+    } else {
+      document.getElementById('loginOverlay').classList.add('open');
+      document.getElementById('loginPass').focus();
+    }
+  }
+  function closeLogin(){
+    document.getElementById('loginOverlay').classList.remove('open');
+    document.getElementById('loginError').style.display = 'none';
+    document.getElementById('loginPass').value = '';
+  }
+  async function tryLogin(){
+    const val = document.getElementById('loginPass').value;
+    const loginError = document.getElementById('loginError');
+    try{
+      await apiFetch('/login', { method:'POST', body: JSON.stringify({ code: val }) });
+      adminCode = val;
+      isAdmin = true;
+      closeLogin();
+      document.getElementById('heroDateInput').value = document.getElementById('heroDate').textContent;
+      renderAdminTable();
+      document.getElementById('adminOverlay').classList.add('open');
+    } catch(err){
+      if(err.message === 'Failed to fetch' || err.message === 'NetworkError when attempting to fetch resource.'){
+        loginError.textContent = 'Tidak dapat terhubung ke server. Pastikan backend sedang berjalan (npm start) dan situs dibuka lewat http://localhost:3000, bukan dibuka langsung sebagai file.';
+      } else {
+        loginError.textContent = 'Kode admin salah. Coba lagi.';
+      }
+      loginError.style.display = 'block';
+    }
+  }
+  function closeAdmin(){
+    document.getElementById('adminOverlay').classList.remove('open');
+    resetForm();
+  }
+  function logoutAdmin(){
+    isAdmin = false;
+    adminCode = null;
+    closeAdmin();
+  }
+
+  function toggleNav(){
+    document.querySelector('.navlinks').classList.toggle('show');
+  }
+  document.querySelectorAll('.navlinks a').forEach(function(link){
+    link.addEventListener('click', function(){
+      document.querySelector('.navlinks').classList.remove('show');
+    });
+  });
+
+  document.getElementById('loginPass').addEventListener('keydown', function(e){
+    if(e.key === 'Enter') tryLogin();
+  });
+
+  /* ============ SOROTAN "HARI INI" DI JADWAL MINGGUAN ============ */
+  var todayIdx = new Date().getDay();
+  document.querySelectorAll('#weekGrid .day-card').forEach(function(card){
+    if(parseInt(card.getAttribute('data-day'),10) === todayIdx){
+      card.classList.add('today');
+      var pill = card.querySelector('.today-pill');
+      if(pill) pill.style.display = 'inline-block';
+    }
+  });
+
+  /* ============ MUAT DATA AWAL DARI SERVER ============ */
+  loadSettings();
+  loadIbadah();
+</script>
+
+</body>
+</html>
