@@ -42,7 +42,7 @@
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
   }
-  h1,h2,h3{ font-family:'Inter', sans-serif; font-weight:700; letter-spacing:0; color:var(--primary); }
+  h1,h2,h3{ font-family:'Inter', sans-serif; font-weight:700; letter-spacing 100px; color:var(--primary); }
   h4,h5,h6{ font-family:'Inter', sans-serif; font-weight:700; letter-spacing:0; color:var(--text); }
   a{ color:inherit; }
   img{ max-width:100%; display:block; }
@@ -60,7 +60,7 @@
   .nav{
     position:sticky; top:0; z-index:50;
     background:rgba(28,37,65,.94); backdrop-filter:blur(6px);
-    border-bottom:1px solid rgba(201,162,75,.25);
+    border-bottom:1px solid rgba(201, 161, 75, 0.63);
   }
   .nav .wrap{ display:flex; align-items:center; justify-content:space-between; padding:14px 24px; position:relative; }
   .brand{ display:flex; align-items:center; gap:10px; color:var(--text); }
@@ -370,7 +370,7 @@
 <header class="hero">
   <div class="hero-inner">
     <h1 class="eyebrow">Warta Jemaat</h1>
-    <h2 style="color: var(--accent-soft);" id="heroDate">Minggu, 26 Juli 2026</h1>
+    <h1 style="color: var(--accent-soft); word-spacing: 7px;" id="heroDate">Minggu, 26 Juli 2026</h1>
     <p class="lead">Selamat datang, jemaat yang dikasihi Tuhan. Berikut jadwal ibadah dan kegiatan pelayanan minggu ini.</p>
     <div class="hero-cta">
       <a href="#ibadah" class="btn btn-gold">Lihat Jadwal Ibadah</a>
@@ -399,7 +399,7 @@
     <div class="sec-head">
       <div class="eyebrow" style="color:var(--maroon)">Jadwal Ibadah</div>
       <h2>Bergabunglah dalam Ibadah</h2>
-      <p>Tersedia secara langsung di gedung gereja maupun disiarkan online bagi jemaat yang berhalangan hadir.</p>
+      <p>Tersedia secara langsung di gedung gereja maupun disiarkan daring bagi jemaat yang berhalangan hadir.</p>
     </div>
 
     <div class="service-grid" id="ibadahGrid">
@@ -538,9 +538,6 @@
   </div>
 </footer>
 
-<!-- ===== ADMIN: tombol mengambang ===== -->
-<button class="admin-fab" id="adminFab" onclick="openAdmin()">⚙ Admin</button>
-
 <!-- ===== ADMIN: modal login ===== -->
 <div class="modal-overlay" id="loginOverlay">
   <div class="modal-box" style="max-width:380px;">
@@ -555,7 +552,7 @@
         <input type="password" id="loginPass" placeholder="Masukkan kode admin" autocomplete="off">
       </div>
       <button class="btn btn-gold btn-full" onclick="tryLogin()">Masuk</button>
-      <p style="font-size:12px; color:var(--muted); margin-top:14px; text-align:center;">Kode demo: <strong>gereja2026</strong> — ganti di kode sumber sebelum situs diterbitkan.</p>
+      <p style="font-size:12px; color:var(--muted); margin-top:14px; text-align:center;">Tekan <strong>Ctrl+Y</strong> kapan saja untuk membuka panel ini.</p>
     </div>
   </div>
 </div>
@@ -885,6 +882,18 @@
 
   document.getElementById('loginPass').addEventListener('keydown', function(e){
     if(e.key === 'Enter') tryLogin();
+  });
+
+  /* ============ PINTASAN KEYBOARD: Ctrl+Y membuka panel admin ============ */
+  document.addEventListener('keydown', function(e){
+    const key = e.key.toLowerCase();
+    if((e.ctrlKey || e.metaKey) && key === 'y'){
+      e.preventDefault();
+      openAdmin();
+    }
+    if(e.key === 'Escape'){
+      closeLogin();
+    }
   });
 
   /* ============ SOROTAN "HARI INI" DI JADWAL MINGGUAN ============ */
